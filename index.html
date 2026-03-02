@@ -2315,40 +2315,48 @@
         // Initialize particles when page loads
         window.addEventListener('load', createParticles);
 
-        function checkPassword() {
-            const password = document.getElementById('password-input').value;
-            const correctPassword = '1334342';
-            const passwordSection = document.getElementById('password-section');
-            const content = document.getElementById('content');
-            const wrongPassword = document.getElementById('wrong-password');
-            
-            // Add loading effect
-            const submitBtn = document.getElementById('submit-password');
-            submitBtn.innerHTML = 'Checking...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                if (password === correctPassword) {
-                    passwordSection.style.display = 'none';
-                    content.style.display = 'block';
-                    document.getElementById('back-button').style.display = 'block';
-                    // Add celebration effect
-                    createCelebration();
-                } else {
-                    passwordSection.style.display = 'none';
-                    wrongPassword.style.display = 'block';
-                    document.getElementById('back-button').style.display = 'block';
-                    const wrongVid = document.getElementById('wrong-password-video');
-                    if (wrongVid) {
-                        wrongVid.currentTime = 0;
-                        wrongVid.play().catch(() => {});
-                    }
-                    // Reset submit button state
-                    submitBtn.innerHTML = 'Submit';
-                    submitBtn.disabled = false;
-                }
-            }, 1000);
+        async function checkPassword() {
+    const password = document.getElementById('password-input').value;
+    const passwordSection = document.getElementById('password-section');
+    const content = document.getElementById('content');
+    const wrongPassword = document.getElementById('wrong-password');
+    const submitBtn = document.getElementById('submit-password');
+
+    submitBtn.innerHTML = 'Checking...';
+    submitBtn.disabled = true;
+
+    try {
+        const response = await fetch('/api/check-password', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            passwordSection.style.display = 'none';
+            content.style.display = 'block';
+            document.getElementById('back-button').style.display = 'block';
+            createCelebration();
+        } else {
+            passwordSection.style.display = 'none';
+            wrongPassword.style.display = 'block';
+            document.getElementById('back-button').style.display = 'block';
+
+            const wrongVid = document.getElementById('wrong-password-video');
+            if (wrongVid) {
+                wrongVid.currentTime = 0;
+                wrongVid.play().catch(() => {});
+            }
         }
+    } catch (error) {
+        alert('Server error');
+    }
+
+    submitBtn.innerHTML = 'Submit';
+    submitBtn.disabled = false;
+}
         
         function showNoPasswordMessage() {
             const passwordSection = document.getElementById('password-section');
