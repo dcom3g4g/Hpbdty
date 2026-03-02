@@ -1,0 +1,2691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Surprise</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, 
+                #ff6b9d 0%, 
+                #c44569 8%, 
+                #8b5a8c 16%, 
+                #6c5ce7 24%, 
+                #a29bfe 32%, 
+                #fd79a8 40%, 
+                #fdcb6e 48%, 
+                #e17055 56%, 
+                #ff7675 64%, 
+                #74b9ff 72%, 
+                #00b894 80%, 
+                #fdcb6e 88%, 
+                #e84393 96%, 
+                #ff6b9d 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 6s ease-in-out infinite;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 107, 157, 0.4) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(196, 69, 105, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(139, 90, 140, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 60% 60%, rgba(108, 92, 231, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 10% 30%, rgba(162, 155, 254, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(253, 121, 168, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(116, 185, 255, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 90% 10%, rgba(0, 184, 148, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 90%, rgba(232, 67, 147, 0.2) 0%, transparent 50%);
+            z-index: -1;
+        }
+        
+        /* Galaxy Background */
+        .galaxy-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at center, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 30% 20%, rgba(75, 0, 130, 0.15) 0%, transparent 40%),
+                radial-gradient(ellipse at 70% 80%, rgba(25, 25, 112, 0.1) 0%, transparent 45%),
+                radial-gradient(ellipse at 20% 60%, rgba(72, 61, 139, 0.1) 0%, transparent 35%),
+                radial-gradient(ellipse at 80% 40%, rgba(106, 90, 205, 0.1) 0%, transparent 40%);
+            z-index: -4;
+            animation: galaxyRotate 60s linear infinite;
+        }
+        
+        @keyframes galaxyRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Stars */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+        }
+        
+        .star-1 { width: 2px; height: 2px; top: 20%; left: 10%; animation-delay: 0s; }
+        .star-2 { width: 1px; height: 1px; top: 30%; left: 20%; animation-delay: 0.5s; }
+        .star-3 { width: 3px; height: 3px; top: 15%; left: 30%; animation-delay: 1s; }
+        .star-4 { width: 1px; height: 1px; top: 25%; left: 40%; animation-delay: 1.5s; }
+        .star-5 { width: 2px; height: 2px; top: 35%; left: 50%; animation-delay: 2s; }
+        .star-6 { width: 1px; height: 1px; top: 10%; left: 60%; animation-delay: 2.5s; }
+        .star-7 { width: 2px; height: 2px; top: 40%; left: 70%; animation-delay: 0.3s; }
+        .star-8 { width: 1px; height: 1px; top: 20%; left: 80%; animation-delay: 0.8s; }
+        .star-9 { width: 3px; height: 3px; top: 50%; left: 15%; animation-delay: 1.3s; }
+        .star-10 { width: 1px; height: 1px; top: 60%; left: 25%; animation-delay: 1.8s; }
+        .star-11 { width: 2px; height: 2px; top: 45%; left: 35%; animation-delay: 2.3s; }
+        .star-12 { width: 1px; height: 1px; top: 55%; left: 45%; animation-delay: 0.1s; }
+        .star-13 { width: 2px; height: 2px; top: 65%; left: 55%; animation-delay: 0.6s; }
+        .star-14 { width: 1px; height: 1px; top: 35%; left: 65%; animation-delay: 1.1s; }
+        .star-15 { width: 3px; height: 3px; top: 70%; left: 75%; animation-delay: 1.6s; }
+        .star-16 { width: 1px; height: 1px; top: 80%; left: 85%; animation-delay: 2.1s; }
+        .star-17 { width: 2px; height: 2px; top: 75%; left: 5%; animation-delay: 0.4s; }
+        .star-18 { width: 1px; height: 1px; top: 85%; left: 15%; animation-delay: 0.9s; }
+        .star-19 { width: 2px; height: 2px; top: 90%; left: 25%; animation-delay: 1.4s; }
+        .star-20 { width: 1px; height: 1px; top: 5%; left: 35%; animation-delay: 1.9s; }
+        .star-21 { width: 3px; height: 3px; top: 12%; left: 45%; animation-delay: 2.4s; }
+        .star-22 { width: 1px; height: 1px; top: 8%; left: 55%; animation-delay: 0.2s; }
+        .star-23 { width: 2px; height: 2px; top: 18%; left: 65%; animation-delay: 0.7s; }
+        .star-24 { width: 1px; height: 1px; top: 28%; left: 75%; animation-delay: 1.2s; }
+        .star-25 { width: 2px; height: 2px; top: 38%; left: 85%; animation-delay: 1.7s; }
+        .star-26 { width: 1px; height: 1px; top: 48%; left: 5%; animation-delay: 2.2s; }
+        .star-27 { width: 3px; height: 3px; top: 58%; left: 15%; animation-delay: 0.1s; }
+        .star-28 { width: 1px; height: 1px; top: 68%; left: 25%; animation-delay: 0.6s; }
+        .star-29 { width: 2px; height: 2px; top: 78%; left: 35%; animation-delay: 1.1s; }
+        .star-30 { width: 1px; height: 1px; top: 88%; left: 45%; animation-delay: 1.6s; }
+        /* Hidden by default */
+.caption-content {
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+}
+
+/* Open state */
+.media-caption.open .caption-content {
+    max-height: 500px;
+    opacity: 1;
+    transform: translateY(0);
+    margin-top: 10px;
+}
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2);
+            }
+        }
+        
+        /* Shooting Stars */
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background: linear-gradient(45deg, white, transparent);
+            border-radius: 50%;
+            z-index: -2;
+            animation: shoot 3s linear infinite;
+        }
+        
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, white, transparent);
+            transform: translateX(-100px);
+        }
+        
+        .shooting-star-1 {
+            top: 20%;
+            left: 0%;
+            animation-delay: 0s;
+        }
+        
+        .shooting-star-2 {
+            top: 60%;
+            left: 0%;
+            animation-delay: 8s;
+        }
+        
+        .shooting-star-3 {
+            top: 40%;
+            left: 0%;
+            animation-delay: 16s;
+        }
+        
+        @keyframes shoot {
+            0% {
+                transform: translateX(0) translateY(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100vw) translateY(50px);
+                opacity: 0;
+            }
+        }
+        
+        /* Nebula Effect */
+        .nebula {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 800px 400px at 20% 30%, rgba(255, 20, 147, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 600px 300px at 80% 70%, rgba(0, 191, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 400px 200px at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
+            z-index: -3;
+            animation: nebulaFloat 20s ease-in-out infinite;
+        }
+        
+        @keyframes nebulaFloat {
+            0%, 100% { 
+                transform: translateX(0px) translateY(0px) scale(1);
+            }
+            33% { 
+                transform: translateX(20px) translateY(-10px) scale(1.1);
+            }
+            66% { 
+                transform: translateX(-10px) translateY(15px) scale(0.9);
+            }
+        }
+        
+        /* 3D Floating Shapes */
+        .floating-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Anime-style Kawaii Elements */
+        .kawaii-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .kawaii-emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: kawaiiFloat 8s ease-in-out infinite;
+            opacity: 0.6;
+        }
+        
+        .kawaii-emoji:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .kawaii-emoji:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .kawaii-emoji:nth-child(3) { top: 30%; left: 15%; animation-delay: 2s; }
+        .kawaii-emoji:nth-child(4) { top: 40%; right: 20%; animation-delay: 3s; }
+        .kawaii-emoji:nth-child(5) { top: 50%; left: 8%; animation-delay: 4s; }
+        .kawaii-emoji:nth-child(6) { top: 60%; right: 15%; animation-delay: 5s; }
+        .kawaii-emoji:nth-child(7) { top: 70%; left: 12%; animation-delay: 6s; }
+        .kawaii-emoji:nth-child(8) { top: 80%; right: 8%; animation-delay: 7s; }
+        .kawaii-emoji:nth-child(9) { top: 15%; left: 25%; animation-delay: 0.5s; }
+        .kawaii-emoji:nth-child(10) { top: 25%; right: 30%; animation-delay: 1.5s; }
+        .kawaii-emoji:nth-child(11) { top: 35%; left: 35%; animation-delay: 2.5s; }
+        .kawaii-emoji:nth-child(12) { top: 45%; right: 25%; animation-delay: 3.5s; }
+        .kawaii-emoji:nth-child(13) { top: 55%; left: 30%; animation-delay: 4.5s; }
+        .kawaii-emoji:nth-child(14) { top: 65%; right: 35%; animation-delay: 5.5s; }
+        .kawaii-emoji:nth-child(15) { top: 75%; left: 20%; animation-delay: 6.5s; }
+        .kawaii-emoji:nth-child(16) { top: 85%; right: 12%; animation-delay: 7.5s; }
+        
+        @keyframes kawaiiFloat {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            25% { 
+                transform: translateY(-15px) rotate(5deg) scale(1.1);
+            }
+            50% { 
+                transform: translateY(-10px) rotate(0deg) scale(1.2);
+            }
+            75% { 
+                transform: translateY(-20px) rotate(-5deg) scale(1.1);
+            }
+        }
+        
+        /* Anime Sparkles */
+        .anime-sparkles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(45deg, #ff69b4, #ffd700, #ff69b4);
+            border-radius: 50%;
+            animation: sparkleTwinkle 2s ease-in-out infinite;
+        }
+        
+        .sparkle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+        .sparkle:nth-child(2) { top: 25%; left: 20%; animation-delay: 0.3s; }
+        .sparkle:nth-child(3) { top: 35%; left: 30%; animation-delay: 0.6s; }
+        .sparkle:nth-child(4) { top: 45%; left: 40%; animation-delay: 0.9s; }
+        .sparkle:nth-child(5) { top: 55%; left: 50%; animation-delay: 1.2s; }
+        .sparkle:nth-child(6) { top: 65%; left: 60%; animation-delay: 1.5s; }
+        .sparkle:nth-child(7) { top: 75%; left: 70%; animation-delay: 1.8s; }
+        .sparkle:nth-child(8) { top: 85%; left: 80%; animation-delay: 2.1s; }
+        .sparkle:nth-child(9) { top: 20%; right: 15%; animation-delay: 0.2s; }
+        .sparkle:nth-child(10) { top: 30%; right: 25%; animation-delay: 0.5s; }
+        .sparkle:nth-child(11) { top: 40%; right: 35%; animation-delay: 0.8s; }
+        .sparkle:nth-child(12) { top: 50%; right: 45%; animation-delay: 1.1s; }
+        .sparkle:nth-child(13) { top: 60%; right: 55%; animation-delay: 1.4s; }
+        .sparkle:nth-child(14) { top: 70%; right: 65%; animation-delay: 1.7s; }
+        .sparkle:nth-child(15) { top: 80%; right: 75%; animation-delay: 2s; }
+        .sparkle:nth-child(16) { top: 90%; right: 85%; animation-delay: 2.3s; }
+        
+        @keyframes sparkleTwinkle {
+            0%, 100% { 
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% { 
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+        
+        /* Pane Space Animation */
+        .pane-space {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            perspective: 1000px;
+            overflow: hidden;
+        }
+        
+        .pane {
+            position: absolute;
+            background: linear-gradient(45deg, 
+                rgba(0, 255, 255, 0.1), 
+                rgba(255, 0, 255, 0.1), 
+                rgba(0, 255, 0, 0.1));
+            border: 1px solid rgba(0, 255, 255, 0.3);
+            animation: paneMove 20s linear infinite;
+        }
+        
+        .pane-1 {
+            width: 200px;
+            height: 150px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            transform-style: preserve-3d;
+            animation: paneMove 25s linear infinite, paneRotate 15s linear infinite;
+        }
+        
+        .pane-2 {
+            width: 150px;
+            height: 200px;
+            top: 30%;
+            left: 80%;
+            animation-delay: 5s;
+            transform-style: preserve-3d;
+            animation: paneMove 30s linear infinite, paneRotate 20s linear infinite;
+        }
+        
+        .pane-3 {
+            width: 180px;
+            height: 120px;
+            top: 60%;
+            left: 10%;
+            animation-delay: 10s;
+            transform-style: preserve-3d;
+            animation: paneMove 22s linear infinite, paneRotate 18s linear infinite;
+        }
+        
+        .pane-4 {
+            width: 120px;
+            height: 180px;
+            top: 70%;
+            left: 70%;
+            animation-delay: 15s;
+            transform-style: preserve-3d;
+            animation: paneMove 28s linear infinite, paneRotate 12s linear infinite;
+        }
+        
+        .pane-5 {
+            width: 160px;
+            height: 160px;
+            top: 20%;
+            left: 50%;
+            animation-delay: 8s;
+            transform-style: preserve-3d;
+            animation: paneMove 24s linear infinite, paneRotate 16s linear infinite;
+        }
+        
+        .pane-6 {
+            width: 140px;
+            height: 100px;
+            top: 80%;
+            left: 40%;
+            animation-delay: 12s;
+            transform-style: preserve-3d;
+            animation: paneMove 26s linear infinite, paneRotate 14s linear infinite;
+        }
+        
+        @keyframes paneMove {
+            0% {
+                transform: translateZ(-500px) translateX(0px) translateY(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateZ(500px) translateX(100px) translateY(-50px);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes paneRotate {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+            25% {
+                transform: rotateX(90deg) rotateY(45deg) rotateZ(30deg);
+            }
+            50% {
+                transform: rotateX(180deg) rotateY(90deg) rotateZ(60deg);
+            }
+            75% {
+                transform: rotateX(270deg) rotateY(135deg) rotateZ(90deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(180deg) rotateZ(120deg);
+            }
+        }
+        
+        /* Space Grid Effect */
+        .space-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 30s linear infinite;
+            z-index: -3;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                transform: translateZ(-1000px);
+            }
+            100% {
+                transform: translateZ(1000px);
+            }
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            animation: floatShape 20s linear infinite;
+        }
+        
+        .shape-1 {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            border-radius: 50%;
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+            transform-style: preserve-3d;
+            animation: floatShape 15s linear infinite, rotate3D 10s linear infinite;
+        }
+        
+        .shape-2 {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #45b7d1, #96ceb4);
+            top: 60%;
+            left: 80%;
+            animation-delay: 5s;
+            transform-style: preserve-3d;
+            animation: floatShape 18s linear infinite, rotate3D 12s linear infinite;
+        }
+        
+        .shape-3 {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, #feca57, #ff9ff3);
+            border-radius: 20px;
+            top: 80%;
+            left: 20%;
+            animation-delay: 10s;
+            transform-style: preserve-3d;
+            animation: floatShape 22s linear infinite, rotate3D 8s linear infinite;
+        }
+        
+        .shape-4 {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #ffd700, #ff6b6b);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            top: 30%;
+            left: 70%;
+            animation-delay: 15s;
+            transform-style: preserve-3d;
+            animation: floatShape 16s linear infinite, rotate3D 14s linear infinite;
+        }
+        
+        @keyframes floatShape {
+            0% {
+                transform: translateY(100vh) translateX(0px) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) translateX(50px) rotate(360deg);
+            }
+        }
+        
+        @keyframes rotate3D {
+            0% {
+                transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg);
+            }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            color: #ffffff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease-in-out infinite, title3D 8s ease-in-out infinite;
+            transform-style: preserve-3d;
+        }
+        
+        @keyframes title3D {
+            0%, 100% { 
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px);
+            }
+            25% { 
+                transform: perspective(1000px) rotateX(5deg) rotateY(5deg) translateZ(10px);
+            }
+            50% { 
+                transform: perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(20px);
+            }
+            75% { 
+                transform: perspective(1000px) rotateX(-5deg) rotateY(-5deg) translateZ(10px);
+            }
+        }
+        
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        
+        #password-section {
+            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            animation: float3D 6s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+        
+        #password-section:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes float3D {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg);
+            }
+            25% { 
+                transform: translateY(-5px) rotateX(2deg) rotateY(-2deg);
+            }
+            50% { 
+                transform: translateY(-10px) rotateX(0deg) rotateY(0deg);
+            }
+            75% { 
+                transform: translateY(-5px) rotateX(-2deg) rotateY(2deg);
+            }
+        }
+        
+        #password-input {
+            padding: 15px 20px;
+            width: 300px;
+            margin: 20px;
+            border-radius: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 16px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            animation: inputFloat 4s ease-in-out infinite;
+        }
+        
+        @keyframes inputFloat {
+            0%, 100% { 
+                transform: translateZ(0px) rotateX(0deg);
+            }
+            50% { 
+                transform: translateZ(5px) rotateX(2deg);
+            }
+        }
+        
+        #password-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        #password-input:focus {
+            outline: none;
+            border-color: #4ecdc4;
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.3);
+            transform: scale(1.05) translateZ(10px) rotateX(5deg);
+        }
+        
+        #submit-password {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+            transform-style: preserve-3d;
+            animation: button3D 5s ease-in-out infinite;
+        }
+        
+        @keyframes button3D {
+            0%, 100% { 
+                transform: translateZ(0px) rotateY(0deg);
+            }
+            25% { 
+                transform: translateZ(3px) rotateY(5deg);
+            }
+            50% { 
+                transform: translateZ(6px) rotateY(0deg);
+            }
+            75% { 
+                transform: translateZ(3px) rotateY(-5deg);
+            }
+        }
+        
+        #submit-password:hover {
+            transform: translateY(-2px) translateZ(8px) rotateX(10deg);
+            box-shadow: 0 6px 20px rgba(78, 205, 196, 0.4);
+        }
+        
+        .password-hint {
+            color: #ffd700;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+            padding: 10px 20px;
+            border-radius: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            display: inline-block;
+        }
+        
+        #wrong-password {
+            display: none;
+            margin-top: 50px;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 69, 0, 0.1));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 107, 107, 0.4);
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        .wrong-password-video-container {
+            margin: 30px 0 0;
+            text-align: center;
+        }
+        
+        .wrong-password-video-container h3 {
+            color: #ff6b6b;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* Make wrong-password video big and responsive */
+        #wrong-password .video-wrapper {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin: 20px auto 0;
+            border-radius: 20px;
+        }
+        
+        #wrong-password-video {
+            width: 100%;
+            height: 55vh;
+            object-fit: contain;
+            display: block;
+            border-radius: 18px;
+        }
+        
+        #wrong-password button {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        #wrong-password button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            #wrong-password-video {
+                height: 40vh;
+            }
+            
+            .wrong-password-video-container h3 {
+                font-size: 1.1rem;
+            }
+        }
+        
+        #no-password-btn {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+        
+        #no-password-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+        
+        #no-password-message {
+            display: none;
+            margin-top: 50px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(255, 140, 0, 0.1));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            animation: shake 0.5s ease-in-out;
+        }
+        
+        #no-password-message h2 {
+            color: #ff8c00;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+        }
+        
+        #no-password-message p {
+            color: #333;
+            font-size: 1.1rem;
+            margin: 15px 0;
+            font-weight: 500;
+        }
+        
+        #no-password-message button {
+            padding: 12px 25px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        #no-password-message button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .funny-video-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .funny-video-container h3 {
+            color: #ff8c00;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .video-wrapper {
+            position: relative;
+            display: inline-block;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            margin: 15px 0;
+        }
+        
+        #funny-video {
+            width: 300px;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .video-caption {
+            color: #333;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            #funny-video {
+                width: 250px;
+                height: 160px;
+            }
+            
+            .funny-video-container h3 {
+                font-size: 1.1rem;
+            }
+        }
+        
+        #wrong-password h2 {
+            color: #ff6b6b;
+            font-size: 2rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        #content {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+            padding: 0 30px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .gallery .media-item:last-child {
+            margin: 0 auto;
+        }
+        
+        .gallery img, .gallery video {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 4px solid rgba(255, 182, 193, 0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gallery img:hover, .gallery video:hover {
+            transform: translateY(-15px) scale(1.08) rotate(2deg);
+            box-shadow: 0 25px 60px rgba(255, 105, 180, 0.5);
+            border-color: rgba(255, 105, 180, 0.9);
+            filter: brightness(1.1) saturate(1.2);
+        }
+        
+        .gallery img::before, .gallery video::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+        
+        .gallery img:hover::before, .gallery video:hover::before {
+            opacity: 1;
+        }
+        
+        .media-caption {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.95), rgba(255, 192, 203, 0.95), rgba(255, 218, 185, 0.9));
+            color: #333;
+            padding: 18px;
+            margin-top: 15px;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.6);
+            border: 3px solid rgba(255, 105, 180, 0.4);
+            backdrop-filter: blur(15px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .media-caption:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(255, 105, 180, 0.4);
+            border-color: rgba(255, 105, 180, 0.7);
+        }
+        
+        .media-caption::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .media-caption:hover::before {
+            left: 100%;
+        }
+        
+        /* Staggered animation for gallery items */
+        .media-item {
+            animation: slideInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        
+        .media-item:nth-child(1) { animation-delay: 0.1s; }
+        .media-item:nth-child(2) { animation-delay: 0.2s; }
+        .media-item:nth-child(3) { animation-delay: 0.3s; }
+        .media-item:nth-child(4) { animation-delay: 0.4s; }
+        .media-item:nth-child(5) { animation-delay: 0.5s; }
+        .media-item:nth-child(6) { animation-delay: 0.6s; }
+        .media-item:nth-child(7) { animation-delay: 0.7s; }
+        .media-item:nth-child(8) { animation-delay: 0.8s; }
+        .media-item:nth-child(9) { animation-delay: 0.9s; }
+        .media-item:nth-child(10) { animation-delay: 1.0s; }
+        .media-item:nth-child(11) { animation-delay: 1.1s; }
+        .media-item:nth-child(12) { animation-delay: 1.2s; }
+        .media-item:nth-child(13) { animation-delay: 1.3s; }
+        .media-item:nth-child(14) { animation-delay: 1.4s; }
+        .media-item:nth-child(15) { animation-delay: 1.5s; }
+        .media-item:nth-child(16) { animation-delay: 1.6s; }
+        .media-item:nth-child(17) { animation-delay: 1.7s; }
+        .media-item:nth-child(18) { animation-delay: 1.8s; }
+        .media-item:nth-child(19) { animation-delay: 1.9s; }
+        .media-item:nth-child(20) { animation-delay: 2.0s; }
+        
+        @keyframes slideInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        #more-button {
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 50px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+        }
+        
+        #more-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+        
+        #back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            display: none;
+        }
+        
+        #back-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        #reveal {
+            display: none;
+            margin-top: 30px;
+            background: rgba(255, 107, 107, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        #reveal h2 {
+            color: #ff6b6b;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        #reveal img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .spacer {
+            height: 500px;
+        }
+        
+        /* Floating particles animation */
+        .particle {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+        
+        /* Fill in the blank section */
+        #fill-blank-section {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+            margin: 50px 0;
+            padding: 60px 20px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        #fill-blank-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255, 20, 147, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .fill-blank-container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .fill-blank-container h2 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .sentence {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 30px 0;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+        
+        .sentence span {
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        #blank-input {
+            padding: 15px 20px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            border: 3px solid #ffd700;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffd700;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+        
+        #blank-input:focus {
+            outline: none;
+            border-color: #ff69b4;
+            box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+            transform: scale(1.05);
+        }
+        
+        #blank-input::placeholder {
+            color: rgba(255, 215, 0, 0.6);
+        }
+        
+        #check-blank {
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
+        }
+        
+        #check-blank:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+        }
+        
+        #wrong-blank {
+            margin-top: 20px;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        /* Birthday message section */
+        #birthday-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease-in-out infinite;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .birthday-container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .birthday-title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #ffffff;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .birthday-subtitle {
+            font-size: 1.5rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 40px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 2rem;
+            animation: floatHeart 6s ease-in-out infinite;
+        }
+        
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 40%; animation-delay: 3s; }
+        .heart:nth-child(5) { left: 60%; animation-delay: 4s; }
+        .heart:nth-child(6) { left: 70%; animation-delay: 5s; }
+        .heart:nth-child(7) { left: 80%; animation-delay: 1.5s; }
+        .heart:nth-child(8) { left: 90%; animation-delay: 2.5s; }
+        
+        @keyframes floatHeart {
+            0% { 
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Birthday button */
+        #birthday-button {
+            padding: 20px 50px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            animation: gradientShift 2s ease-in-out infinite;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 50px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        #birthday-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Gen Z Video Section */
+        #genz-video-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57, #ff9ff3);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease-in-out infinite;
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .video-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .video-header h1 {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .video-header p {
+            font-size: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+        
+        .video-player {
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .video-screen {
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            min-height: 400px;
+        }
+        
+        .video-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .birthday-guy {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .guy-avatar {
+            font-size: 4rem;
+            margin-bottom: 10px;
+            animation: spin 3s linear infinite;
+        }
+        
+        .guy-name {
+            font-size: 2rem;
+            color: #ffd700;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .genz-texts {
+            position: relative;
+            height: 200px;
+        }
+        
+        .text-bubble {
+            position: absolute;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: bubbleAppear 0.8s ease-out forwards;
+        }
+        
+        .bubble-1 { top: 0; left: 10%; animation-delay: 0.5s; }
+        .bubble-2 { top: 0; right: 10%; animation-delay: 1.5s; }
+        .bubble-3 { top: 50px; left: 20%; animation-delay: 2.5s; }
+        .bubble-4 { top: 50px; right: 20%; animation-delay: 3.5s; }
+        .bubble-5 { top: 100px; left: 15%; animation-delay: 4.5s; }
+        .bubble-6 { top: 100px; right: 15%; animation-delay: 5.5s; }
+        
+        @keyframes bubbleAppear {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .party-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .emoji-rain {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: emojiFall 3s linear infinite;
+        }
+        
+        .emoji:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .emoji:nth-child(2) { left: 25%; animation-delay: 0.5s; }
+        .emoji:nth-child(3) { left: 40%; animation-delay: 1s; }
+        .emoji:nth-child(4) { left: 55%; animation-delay: 1.5s; }
+        .emoji:nth-child(5) { left: 70%; animation-delay: 2s; }
+        .emoji:nth-child(6) { left: 85%; animation-delay: 2.5s; }
+        .emoji:nth-child(7) { left: 15%; animation-delay: 0.3s; }
+        .emoji:nth-child(8) { left: 80%; animation-delay: 0.8s; }
+        
+        @keyframes emojiFall {
+            0% {
+                transform: translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(400px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .video-controls {
+            margin-top: 20px;
+        }
+        
+        #play-video, #replay-video {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        #play-video:hover, #replay-video:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        
+        .genz-quotes {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .genz-quotes h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .quotes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .quote {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.3), rgba(78, 205, 196, 0.3));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .quote:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+        
+        /* More Videos Section */
+        .more-videos-section {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .videos-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .videos-header h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: bounce 2s ease-in-out infinite;
+        }
+        
+        .videos-header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .videos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .video-card {
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.2), rgba(78, 205, 196, 0.2));
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        
+        .video-thumbnail {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .play-icon {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail:hover .play-icon {
+            transform: scale(1.2);
+            color: #4ecdc4;
+        }
+        
+        .video-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+        
+        .video-thumbnail:hover .video-overlay {
+            transform: translateY(0);
+        }
+        
+        .video-overlay h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #4ecdc4;
+        }
+        
+        .video-overlay p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .video-card h3 {
+            color: white;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .video-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+        
+        .videos-footer {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .videos-footer p {
+            color: white;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .subscribe-btn {
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        .subscribe-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        
+        /* Birthday Gate Overlay */
+        #birthday-gate {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.6), rgba(78, 205, 196, 0.6), rgba(254, 202, 87, 0.6));
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease-in-out infinite;
+            z-index: 2500;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .gate-card {
+            background: rgba(0, 0, 0, 0.7);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 480px;
+            width: 100%;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            text-align: center;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        .gate-title {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+        }
+
+        .gate-subtitle {
+            color: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        #birthday-input {
+            padding: 14px 18px;
+            width: 200px;
+            margin: 10px 0 20px;
+            border-radius: 14px;
+            border: 2px solid rgba(255, 182, 193, 0.6);
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 18px;
+            text-align: center;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        #birthday-input::placeholder { color: rgba(255,255,255,0.7); }
+
+        #birthday-input:focus {
+            border-color: #ff69b4;
+            box-shadow: 0 0 18px rgba(255, 105, 180, 0.4);
+        }
+
+        #birthday-submit {
+            padding: 14px 28px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        #birthday-submit:hover { transform: translateY(-2px) scale(1.02); }
+
+        .gate-taunt {
+            margin-top: 15px;
+            color: #ff9ff3;
+            font-weight: 700;
+            min-height: 24px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            #password-input {
+                width: 250px;
+            }
+            
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 25px;
+                padding: 0 15px;
+            }
+            
+            .gallery img, .gallery video {
+                height: 220px;
+            }
+            
+            .sentence {
+                font-size: 1.2rem;
+                flex-direction: column;
+            }
+            
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+            
+            .birthday-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Galaxy Background -->
+    <div class="galaxy-background"></div>
+    
+    <!-- Nebula Effect -->
+    <div class="nebula"></div>
+    
+    <!-- Stars -->
+    <div class="stars">
+        <div class="star star-1"></div>
+        <div class="star star-2"></div>
+        <div class="star star-3"></div>
+        <div class="star star-4"></div>
+        <div class="star star-5"></div>
+        <div class="star star-6"></div>
+        <div class="star star-7"></div>
+        <div class="star star-8"></div>
+        <div class="star star-9"></div>
+        <div class="star star-10"></div>
+        <div class="star star-11"></div>
+        <div class="star star-12"></div>
+        <div class="star star-13"></div>
+        <div class="star star-14"></div>
+        <div class="star star-15"></div>
+        <div class="star star-16"></div>
+        <div class="star star-17"></div>
+        <div class="star star-18"></div>
+        <div class="star star-19"></div>
+        <div class="star star-20"></div>
+        <div class="star star-21"></div>
+        <div class="star star-22"></div>
+        <div class="star star-23"></div>
+        <div class="star star-24"></div>
+        <div class="star star-25"></div>
+        <div class="star star-26"></div>
+        <div class="star star-27"></div>
+        <div class="star star-28"></div>
+        <div class="star star-29"></div>
+        <div class="star star-30"></div>
+    </div>
+    
+    <!-- Shooting Stars -->
+    <div class="shooting-star shooting-star-1"></div>
+    <div class="shooting-star shooting-star-2"></div>
+    <div class="shooting-star shooting-star-3"></div>
+    
+    <!-- Space Grid Effect -->
+    <div class="space-grid"></div>
+    
+    <!-- Pane Space Animation -->
+    <div class="pane-space">
+        <div class="pane pane-1"></div>
+        <div class="pane pane-2"></div>
+        <div class="pane pane-3"></div>
+        <div class="pane pane-4"></div>
+        <div class="pane pane-5"></div>
+        <div class="pane pane-6"></div>
+    </div>
+    
+    <!-- 3D Floating Shapes -->
+    <div class="floating-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+        <div class="shape shape-4"></div>
+    </div>
+    
+    <!-- Anime Kawaii Elements -->
+    <div class="kawaii-elements">
+        <div class="kawaii-emoji">🌸</div>
+        <div class="kawaii-emoji">💖</div>
+        <div class="kawaii-emoji">✨</div>
+        <div class="kawaii-emoji">🎀</div>
+        <div class="kawaii-emoji">💕</div>
+        <div class="kawaii-emoji">🌟</div>
+        <div class="kawaii-emoji">💫</div>
+        <div class="kawaii-emoji">🎈</div>
+        <div class="kawaii-emoji">🦄</div>
+        <div class="kawaii-emoji">🌈</div>
+        <div class="kawaii-emoji">🍭</div>
+        <div class="kawaii-emoji">🎪</div>
+        <div class="kawaii-emoji">🎨</div>
+        <div class="kawaii-emoji">🎭</div>
+        <div class="kawaii-emoji">🎵</div>
+        <div class="kawaii-emoji">🎊</div>
+    </div>
+    
+    <!-- Anime Sparkles -->
+    <div class="anime-sparkles">
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+        <div class="sparkle"></div>
+    </div>
+    
+    <button id="back-button" onclick="goBack()">←</button>
+    <div class="container">
+        <div id="password-section">
+            <h1>Nhập mật mã để tiếp tục nhá !!</h1>
+            <p class="password-hint">💡 Hint: Chỉ những người cute nhất mới biết mật khẩu này!</p>
+            <input type="password" id="password-input" placeholder="Enter password">
+            <br>
+            <button id="submit-password" onclick="checkPassword()">Submit</button>
+            <br><br>
+            <button id="no-password-btn" onclick="showNoPasswordMessage()">No Password? 🤔</button>
+        </div>
+
+        <div id="wrong-password">
+            <h2>Oh really? You think that's the password? 😏</h2>
+            <p>Nice try, but that's not it! 🤨</p>
+            <p>This is a VIP area, you need the REAL password! 🔐</p>
+            <p>Go ask the person who sent you this link! 😤</p>
+            
+            <div class="wrong-password-video-container">
+                <h3>This is literally you right now: 😂</h3>
+                <div class="video-wrapper">
+                    <video id="wrong-password-video" autoplay muted loop playsinline preload="auto" controls poster="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif">
+                        <source src="../surprize/funnyAF.mp4" type="video/mp4">
+                        <p>Your browser doesn't support the video tag. But trust us, it's hilarious! 😂</p>
+                    </video>
+                </div>
+                <p class="video-caption">Bro, you look so lost! 😭</p>
+            </div>
+            
+            <button onclick="hideWrongPasswordMessage()">Fine, I'll try again! 😅</button>
+        </div>
+
+        <div id="no-password-message">
+            <h2>Oh really? 😏</h2>
+            <p>So you think you can just waltz in here without knowing the secret code? 🤨</p>
+            <p>This is a VIP area, darling! You need the password to enter! 🔐</p>
+            <p>Go ask the person who sent you this link for the password! 😤</p>
+            <p>Or maybe try guessing... if you're smart enough! 😏</p>
+            
+            <div class="funny-video-container">
+                <h3>Meanwhile, here's what you look like right now: 😂</h3>
+                <div class="video-wrapper">
+                    <video id="funny-video" autoplay muted loop>
+                        <source src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.mp4" type="video/mp4">
+                        <source src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.mp4" type="video/mp4">
+                        <source src="https://media.giphy.com/media/26BRrSvJUa5yrsYms/giphy.mp4" type="video/mp4">
+                        <img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" alt="Funny GIF" style="width: 100%; height: 100%; object-fit: cover;">
+                        <p>Your browser doesn't support the video tag. But trust us, it's hilarious! 😂</p>
+                    </video>
+                </div>
+                <p class="video-caption">This is literally you trying to get in without a password! 🤣</p>
+            </div>
+            
+            <button onclick="hideNoPasswordMessage()">Fine, I'll try again! 😅</button>
+        </div>
+
+        <div id="content">
+            <h1>CHÚC MỪNG SINH NHẬT xxxx!</h1>
+            <img src="https://lh3.googleusercontent.com/d/1mcB6hlC42nwNkkUKMxrrALENmAP2wDFh" alt="Photo 3">
+            <h2>Gửi ngàn lời chúc đến cậu! Mở hộp quà để xem nha</h2>
+            <div class="gallery">
+                <div class="media-item">
+    <img src="https://lh3.googleusercontent.com/d/1mcB6hlC42nwNkkUKMxrrALENmAP2wDFh" alt="Photo 1">
+    <div class="media-caption" onclick="toggleCaption(this)">
+        <div class="caption-title">💬 Điều đầu tiên là ...</div>
+        <div class="caption-content">
+            ✨ Baby looking absolutely stunning! No cap, this pic hits different! 😍
+        </div>
+    </div>
+</div>
+
+<div class="media-item">
+    <img src="https://lh3.googleusercontent.com/d/1mcB6hlC42nwNkkUKMxrrALENmAP2wDFh" alt="Photo 2">
+    <div class="media-caption" onclick="toggleCaption(this)">
+        <div class="caption-title">💬 View Caption</div>
+        <div class="caption-content">
+            🔥 When Baby smiles, the whole world lights up! Main character energy! ✨
+        </div>
+    </div>
+</div>
+
+<div class="media-item">
+    <img src="https://lh3.googleusercontent.com/d/1mcB6hlC42nwNkkUKMxrrALENmAP2wDFh" alt="Photo 3">
+    <div class="media-caption" onclick="toggleCaption(this)">
+        <div class="caption-title">💬 View Caption</div>
+        <div class="caption-content">
+            💫 Baby's drip is unmatched! This outfit is literally chef's kiss! 👌
+        </div>
+    </div>
+</div>
+
+<div class="media-item">
+    <img src="https://lh3.googleusercontent.com/d/1mcB6hlC42nwNkkUKMxrrALENmAP2wDFh" alt="Photo 4">
+    <div class="media-caption" onclick="toggleCaption(this)">
+        <div class="caption-title">💬 View Caption</div>
+        <div class="caption-content">
+            🎭 Baby serving looks that are absolutely immaculate! Period! 💅
+        </div>
+    </div>
+</div>
+
+<div class="media-item" style="margin: 50">
+    <div class="media-caption" onclick="toggleCaption(this)">
+        <div class="caption-title">Và điều cuối cùng cũng là đặc biệt nhất</div>
+        <div class="caption-content">
+            💖 Chúc cậu sớm có được tớ ✨
+        </div>
+    </div>
+</div>
+            </div>
+<!--             
+            <!-- Fill in the blank section -->
+            <div id="fill-blank-section">
+                <div class="fill-blank-container">
+                    <h2>Complete the sentence to unlock more memories!</h2>
+                    <div class="sentence">
+                        <span>Mein gira hua banda jama</span>
+                        <input type="text" id="blank-input" placeholder="_______" maxlength="10">
+                        <span>baliye</span>
+                    </div>
+                    <button id="check-blank" onclick="checkBlank()">Submit Answer</button>
+                    <div id="wrong-blank" style="display: none;">
+                        <p>Oops neech people! Try again! 😊</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Us pictures section -->
+            <div id="us-pictures" style="display: none;">
+                <h1>Our Beautiful Moments Together! 💕</h1>
+                <div class="gallery">
+                    <div class="media-item">
+                        <img src="us-photo1.jpg" alt="Us Together 1">
+                        <div class="media-caption">💕 Our first pic together! This moment was absolutely magical! ✨</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo2.jpg" alt="Us Together 2">
+                        <div class="media-caption">🔥 When we're together, it's always main character energy! No cap! 💖</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo3.jpg" alt="Us Together 3">
+                        <div class="media-caption">🌟 Our love story is literally the best! This is peak romance! 💫</div>
+                    </div>
+                    <div class="media-item">
+                        <video controls src="us-video1.mp4" alt="Us Video 1"></video>
+                        <div class="media-caption">🎬 Our first video together! This memory is absolutely precious! 💎</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo4.jpg" alt="Us Together 4">
+                        <div class="media-caption">💖 We're literally the cutest couple ever! This is relationship goals! 😍</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo5.jpg" alt="Us Together 5">
+                        <div class="media-caption">🎭 Our adventures together are always the best! This is pure joy! 🚀</div>
+                    </div>
+                    <div class="media-item">
+                        <video controls src="us-video2.mp4" alt="Us Video 2"></video>
+                        <div class="media-caption">🎥 Our moments together are absolutely iconic! This is peak content! 📸</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo6.jpg" alt="Us Together 6">
+                        <div class="media-caption">✨ Our bond is unmatched! This connection is everything! 💕</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo7.jpg" alt="Us Together 7">
+                        <div class="media-caption">🌈 Our love is literally the most beautiful thing! This is pure magic! ✨</div>
+                    </div>
+                    <div class="media-item">
+                        <img src="us-photo8.jpg" alt="Us Together 8">
+                        <div class="media-caption">💫 Our journey together is absolutely perfect! This is forever! 💖</div>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+                <button id="birthday-button" onclick="showBirthday()">🎉 Special Surprise! 🎉</button>
+            </div>
+            
+            <!-- Birthday message section -->
+            <div id="birthday-message" style="display: none;">
+                <div class="birthday-container">
+                    <div class="birthday-text">
+                        <h1 class="birthday-title">Happy Birthday!</h1>
+                        <p class="birthday-subtitle">Wishing you the most amazing day filled with love and joy! 🎂🎈</p>
+                    </div>
+                    <div class="floating-hearts">
+                        <div class="heart">💖</div>
+                        <div class="heart">💕</div>
+                        <div class="heart">💗</div>
+                        <div class="heart">💝</div>
+                        <div class="heart">💖</div>
+                        <div class="heart">💕</div>
+                        <div class="heart">💗</div>
+                        <div class="heart">💝</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Gen Z Birthday Video Section -->
+            <div id="genz-video-section" style="display: none;">
+                <div class="video-container">
+                    <div class="video-header">
+                        <h1>🎬 Birthday Vibes 🎬</h1>
+                        <p>No cap, this is about to be fire! 🔥</p>
+                    </div>
+                    
+                    <div class="video-player">
+                        <div class="video-screen">
+                            <div class="video-content">
+                                <div class="video-frame">
+                                    <div class="birthday-guy">
+                                        <div class="guy-avatar">😎</div>
+                                        <div class="guy-name">Sahil Baby</div>
+                                    </div>
+                                    
+                                    <div class="genz-texts">
+                                        <div class="text-bubble bubble-1">Yo bro! It's your birthday! 🎉</div>
+                                        <div class="text-bubble bubble-2">No cap, you're aging like fine wine! 🍷</div>
+                                        <div class="text-bubble bubble-3">Main toh Baby ke liye ready hun! 💪</div>
+                                        <div class="text-bubble bubble-4">Happy Birthday King! 👑</div>
+                                        <div class="text-bubble bubble-5">Ye birthday lit hai Baby! 🔥</div>
+                                        <div class="text-bubble bubble-6">Baby ka swag never dies! 😎</div>
+                                    </div>
+                                    
+                                    <div class="party-effects">
+                                        <div class="emoji-rain">
+                                            <span class="emoji">🎂</span>
+                                            <span class="emoji">🎈</span>
+                                            <span class="emoji">🎉</span>
+                                            <span class="emoji">🎊</span>
+                                            <span class="emoji">🥳</span>
+                                            <span class="emoji">🎁</span>
+                                            <span class="emoji">🍰</span>
+                                            <span class="emoji">🎵</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="video-controls">
+                            <button id="play-video" onclick="playGenZVideo()">▶️ Play Birthday Video</button>
+                            <button id="replay-video" onclick="replayGenZVideo()" style="display: none;">🔄 Replay</button>
+                        </div>
+                    </div>
+                    
+                    <div class="genz-quotes">
+                        <h3>Happy Birthday to you 😍:</h3>
+                        <div class="quotes-grid">
+                            <div class="quote">"Baby, you're literally aging backwards! 🧬"</div>
+                            <div class="quote">"No cap, this birthday is about to be iconic! 📸"</div>
+                            <div class="quote">"Main toh Baby ke liye simp kar raha hun! 😍"</div>
+                            <div class="quote">"Baby ka drip is unmatched! 💧"</div>
+                            <div class="quote">"This birthday energy is immaculate! ✨"</div>
+                            <div class="quote">"Baby, you're the main character! 🎭"</div>
+                        </div>
+                    </div>
+                    
+                    <!-- More Sahil Vibes Section -->
+                    <div class="more-videos-section">
+                        <div class="videos-header">
+                            <h2>🎬 Want to watch some more Sahil vibes? 🎬</h2>
+                            <p>No cap, these videos are about to be fire! 🔥</p>
+                        </div>
+                        
+                        <div class="videos-grid">
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="play-icon">▶️</div>
+                                    <div class="video-overlay">
+                                        <h4>Sahil's Epic Dance Moves</h4>
+                                        <p>When Baby hits the dance floor! 💃</p>
+                                    </div>
+                                </div>
+                                <h3>Sahil's Dance Compilation</h3>
+                                <p>Baby's got moves that'll make you simp! 😍</p>
+                            </div>
+                            
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="play-icon">▶️</div>
+                                    <div class="video-overlay">
+                                        <h4>Sahil's Cooking Skills</h4>
+                                        <p>Baby in the kitchen is immaculate! 👨‍🍳</p>
+                                    </div>
+                                </div>
+                                <h3>Kitchen King Sahil</h3>
+                                <p>When Baby cooks, it's literally chef's kiss! 👌</p>
+                            </div>
+                            
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="play-icon">▶️</div>
+                                    <div class="video-overlay">
+                                        <h4>Sahil's Gym Journey</h4>
+                                        <p>Baby's gains are unmatched! 💪</p>
+                                    </div>
+                                </div>
+                                <h3>Gym Beast Mode</h3>
+                                <p>Baby's dedication is main character energy! 🏋️‍♂️</p>
+                            </div>
+                            
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="play-icon">▶️</div>
+                                    <div class="video-overlay">
+                                        <h4>Sahil's Travel Vlogs</h4>
+                                        <p>Baby exploring the world! 🌍</p>
+                                    </div>
+                                </div>
+                                <h3>Wanderlust Sahil</h3>
+                                <p>Baby's travel game is on another level! ✈️</p>
+                            </div>
+                            
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="play-icon">▶️</div>
+                                    <div class="video-overlay">
+                                        <h4>Sahil's Gaming Skills</h4>
+                                        <p>Baby's gaming is absolutely cracked! 🎮</p>
+                                    </div>
+                                </div>
+                                <h3>Gaming Pro Sahil</h3>
+                                <p>Baby's reflexes are literally built different! ⚡</p>
+                            </div>
+                            
+                            <div class="video-card">
+                                <div class="video-thumbnail">
+                                    <div class="play-icon">▶️</div>
+                                    <div class="video-overlay">
+                                        <h4>Sahil's Comedy Gold</h4>
+                                        <p>Baby's humor is unmatched! 😂</p>
+                                    </div>
+                                </div>
+                                <h3>Comedy King Sahil</h3>
+                                <p>Baby's jokes hit different every time! 🎭</p>
+                            </div>
+                        </div>
+                        
+                        <div class="videos-footer">
+                            <p>More Sahil content coming soon! Stay tuned! 🚀</p>
+                            <div class="subscribe-section">
+                                <button class="subscribe-btn">Subscribe for more Baby vibes! 🔔</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    
+    <!-- Birthday Gate Overlay -->
+    <div id="birthday-gate" style="display: none;">
+        <div class="gate-card">
+            <h2 class="gate-title">🎁 One last check!</h2>
+            <p class="gate-subtitle">Enter my birthday date to unlock the surprise 😉</p>
+            <input id="birthday-input" type="number" min="1" max="31" placeholder="Enter date (DD)">
+            <br>
+            <button id="birthday-submit" onclick="verifyBirthday()">Unlock Surprise</button>
+            <div id="gate-taunt" class="gate-taunt"></div>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                document.body.appendChild(particle);
+            }
+        }
+
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+
+        function checkPassword() {
+            const password = document.getElementById('password-input').value;
+            const correctPassword = '1';
+            const passwordSection = document.getElementById('password-section');
+            const content = document.getElementById('content');
+            const wrongPassword = document.getElementById('wrong-password');
+            
+            // Add loading effect
+            const submitBtn = document.getElementById('submit-password');
+            submitBtn.innerHTML = 'Checking...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                if (password === correctPassword) {
+                    passwordSection.style.display = 'none';
+                    content.style.display = 'block';
+                    document.getElementById('back-button').style.display = 'block';
+                    // Add celebration effect
+                    createCelebration();
+                } else {
+                    passwordSection.style.display = 'none';
+                    wrongPassword.style.display = 'block';
+                    document.getElementById('back-button').style.display = 'block';
+                    const wrongVid = document.getElementById('wrong-password-video');
+                    if (wrongVid) {
+                        wrongVid.currentTime = 0;
+                        wrongVid.play().catch(() => {});
+                    }
+                    // Reset submit button state
+                    submitBtn.innerHTML = 'Submit';
+                    submitBtn.disabled = false;
+                }
+            }, 1000);
+        }
+        
+        function showNoPasswordMessage() {
+            const passwordSection = document.getElementById('password-section');
+            const noPasswordMessage = document.getElementById('no-password-message');
+            const funnyVideo = document.getElementById('funny-video');
+            
+            passwordSection.style.display = 'none';
+            noPasswordMessage.style.display = 'block';
+            
+            // Add shake animation
+            noPasswordMessage.style.animation = 'shake 0.5s ease-in-out';
+            
+            // Play funny video with delay for dramatic effect
+            setTimeout(() => {
+                if (funnyVideo) {
+                    funnyVideo.play().catch(e => {
+                        console.log('Video autoplay failed, but that\'s okay!');
+                    });
+                }
+            }, 1000);
+            
+            // Add some random funny messages that change
+            setTimeout(() => {
+                const funnyMessages = [
+                    "This is literally you trying to get in without a password! 🤣",
+                    "Bro, you look so confused right now! 😂",
+                    "This is peak 'I don't know the password' energy! 💀",
+                    "You're literally the main character of this meme! 🎭",
+                    "This is you when you realize you need the password! 😭",
+                    "No cap, this is exactly how you look! 🔥"
+                ];
+                const caption = document.querySelector('.video-caption');
+                if (caption) {
+                    caption.textContent = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+                }
+            }, 2000);
+        }
+        
+        function hideNoPasswordMessage() {
+            const passwordSection = document.getElementById('password-section');
+            const noPasswordMessage = document.getElementById('no-password-message');
+            
+            noPasswordMessage.style.display = 'none';
+            passwordSection.style.display = 'block';
+        }
+
+        function hideWrongPasswordMessage() {
+            const passwordSection = document.getElementById('password-section');
+            const wrongPassword = document.getElementById('wrong-password');
+            const wrongVid = document.getElementById('wrong-password-video');
+            
+            if (wrongVid) {
+                wrongVid.pause();
+                wrongVid.currentTime = 0;
+            }
+            wrongPassword.style.display = 'none';
+            passwordSection.style.display = 'block';
+        }
+
+        function showReveal() {
+            const reveal = document.getElementById('reveal');
+            const moreButton = document.getElementById('more-button');
+            
+            reveal.style.display = 'block';
+            moreButton.style.display = 'none';
+            
+            // Add scroll effect to reveal
+            reveal.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Celebration effect for correct password
+        function createCelebration() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.width = '10px';
+                    confetti.style.height = '10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '1000';
+                    confetti.style.animation = 'fall 3s linear forwards';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 100);
+            }
+        }
+
+        // Add fall animation for confetti
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Add enter key support for password input
+        document.getElementById('password-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
+        
+        // Add enter key support for blank input
+        document.getElementById('blank-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkBlank();
+            }
+        });
+
+        // Check blank answer
+        function checkBlank() {
+            const answer = document.getElementById('blank-input').value.toLowerCase().trim();
+            const correctAnswer = 'neech';
+            const wrongBlank = document.getElementById('wrong-blank');
+            const usPictures = document.getElementById('us-pictures');
+            const fillBlankSection = document.getElementById('fill-blank-section');
+            
+            if (answer === correctAnswer) {
+                // Hide fill blank section and show us pictures
+                fillBlankSection.style.display = 'none';
+                usPictures.style.display = 'block';
+                usPictures.scrollIntoView({ behavior: 'smooth' });
+                
+                // Add celebration effect
+                createCelebration();
+            } else {
+                // Show wrong answer message
+                wrongBlank.style.display = 'block';
+                document.getElementById('blank-input').value = '';
+                
+                // Hide wrong message after 3 seconds
+                setTimeout(() => {
+                    wrongBlank.style.display = 'none';
+                }, 3000);
+            }
+        }
+        
+        // Show birthday message
+        function showBirthday() {
+            const gate = document.getElementById('birthday-gate');
+            const taunt = document.getElementById('gate-taunt');
+            taunt.textContent = '';
+            document.getElementById('birthday-input').value = '';
+            gate.style.display = 'flex';
+        }
+
+        // Verify birthday gate
+        function verifyBirthday() {
+            const value = (document.getElementById('birthday-input').value || '').trim();
+            const gate = document.getElementById('birthday-gate');
+            const genzVideoSection = document.getElementById('genz-video-section');
+            const taunt = document.getElementById('gate-taunt');
+            const correct = '18';
+
+            if (value === correct) {
+                gate.style.display = 'none';
+                genzVideoSection.style.display = 'block';
+                setTimeout(() => { createCelebration(); }, 500);
+                setTimeout(() => { createConfettiBurst(); }, 1200);
+            } else {
+                const taunts = [
+                    'Nice try. Ab jaa ke Insta bio check karo 😏',
+                    'Aww cute guess! Par pehle mera b’day yaad kar lo 😂',
+                    'Close? Nahi. Meri mummy se puch le? 😜',
+                    'Dude, go and check my birthday date first 🤭',
+                    'Google nahi, dimag lagao! Try again 😉'
+                ];
+                taunt.textContent = taunts[Math.floor(Math.random() * taunts.length)];
+            }
+        }
+
+        // Enter key support for birthday gate
+        document.addEventListener('keypress', function(e) {
+            const gate = document.getElementById('birthday-gate');
+            if (gate && gate.style.display !== 'none' && e.key === 'Enter') {
+                verifyBirthday();
+            }
+        });
+        
+        // Play Gen Z video
+        function playGenZVideo() {
+            const playButton = document.getElementById('play-video');
+            const replayButton = document.getElementById('replay-video');
+            
+            // Hide play button and show replay button
+            playButton.style.display = 'none';
+            replayButton.style.display = 'inline-block';
+            
+            // Start the video animations
+            startVideoAnimations();
+        }
+        
+        // Replay Gen Z video
+        function replayGenZVideo() {
+            const playButton = document.getElementById('play-video');
+            const replayButton = document.getElementById('replay-video');
+            
+            // Reset button states
+            playButton.style.display = 'inline-block';
+            replayButton.style.display = 'none';
+            
+            // Restart animations
+            setTimeout(() => {
+                startVideoAnimations();
+                replayButton.style.display = 'inline-block';
+                playButton.style.display = 'none';
+            }, 100);
+        }
+        
+        // Start video animations
+        function startVideoAnimations() {
+            // Reset all text bubbles
+            const bubbles = document.querySelectorAll('.text-bubble');
+            bubbles.forEach(bubble => {
+                bubble.style.opacity = '0';
+                bubble.style.transform = 'translateY(20px)';
+            });
+            
+            // Restart bubble animations
+            setTimeout(() => {
+                bubbles.forEach((bubble, index) => {
+                    setTimeout(() => {
+                        bubble.style.animation = 'none';
+                        bubble.offsetHeight; // Trigger reflow
+                        bubble.style.animation = 'bubbleAppear 0.8s ease-out forwards';
+                    }, index * 1000);
+                });
+            }, 100);
+            
+            // Add extra celebration effects
+            setTimeout(() => {
+                createCelebration();
+            }, 3000);
+        }
+        
+        // Create confetti burst effect
+        function createConfettiBurst() {
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#ffd700'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = Math.random() * 100 + '%';
+                    confetti.style.width = Math.random() * 8 + 4 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '3000';
+                    confetti.style.animation = 'confettiFall 4s linear forwards';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 50);
+            }
+        }
+        
+        // Add confetti fall animation
+        const confettiStyle = document.createElement('style');
+        confettiStyle.textContent = `
+            @keyframes confettiFall {
+                0% {
+                    transform: translateY(-100vh) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(100vh) rotate(720deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(confettiStyle);
+
+        // Back button functionality
+        function goBack() {
+            const passwordSection = document.getElementById('password-section');
+            const content = document.getElementById('content');
+            const wrongPassword = document.getElementById('wrong-password');
+            const noPasswordMessage = document.getElementById('no-password-message');
+            const backButton = document.getElementById('back-button');
+            const submitBtn = document.getElementById('submit-password');
+            const fillBlankSection = document.getElementById('fill-blank-section');
+            const usPictures = document.getElementById('us-pictures');
+            const birthdayMessage = document.getElementById('birthday-message');
+            const genzVideoSection = document.getElementById('genz-video-section');
+            const birthdayGate = document.getElementById('birthday-gate');
+            
+            // Reset all displays
+            passwordSection.style.display = 'block';
+            content.style.display = 'none';
+            wrongPassword.style.display = 'none';
+            noPasswordMessage.style.display = 'none';
+            backButton.style.display = 'none';
+            fillBlankSection.style.display = 'block';
+            usPictures.style.display = 'none';
+            birthdayMessage.style.display = 'none';
+            genzVideoSection.style.display = 'none';
+            if (birthdayGate) birthdayGate.style.display = 'none';
+            
+            // Reset password input and button
+            document.getElementById('password-input').value = '';
+            document.getElementById('blank-input').value = '';
+            submitBtn.innerHTML = 'Submit';
+            submitBtn.disabled = false;
+            
+            // Hide wrong messages
+            document.getElementById('wrong-blank').style.display = 'none';
+            
+            // Reset video buttons
+            document.getElementById('play-video').style.display = 'inline-block';
+            document.getElementById('replay-video').style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+    <script>
+function toggleCaption(element) {
+    element.classList.toggle("open");
+}
+</script>
+</body>
+</html>
