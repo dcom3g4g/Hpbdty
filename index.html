@@ -1949,7 +1949,9 @@
         <div class="sparkle"></div>
         <div class="sparkle"></div>
     </div>
-    
+    <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
     <button id="back-button" onclick="goBack()">←</button>
     <div class="container">
         <div id="password-section">
@@ -2110,6 +2112,7 @@
             content.style.display = 'block';
             document.getElementById('back-button').style.display = 'block';
             createCelebration();
+            document.getElementById('bg-music').play();
         } else {
             passwordSection.style.display = 'none';
             wrongPassword.style.display = 'block';
@@ -2465,6 +2468,11 @@ container.appendChild(video2);
     <script>
 function toggleCaption(element) {
     element.classList.toggle("open");
+}
+</script>
+<script>
+function playMusic() {
+    document.getElementById('bg-music').play();
 }
 </script>
 </body>
