@@ -59,7 +59,11 @@
                 radial-gradient(circle at 50% 90%, rgba(232, 67, 147, 0.2) 0%, transparent 50%);
             z-index: -1;
         }
-        
+        .responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
         /* Galaxy Background */
         .galaxy-background {
             position: fixed;
@@ -1957,9 +1961,8 @@
             <h2>Sai rùi nha !!</h2>
             <h2>Muốn có gợi ý hãy ... </h2>
             <div class="wrong-password-video-container">
-                <div class="video-wrapper">
-                    <img src="https://lh3.googleusercontent.com/d/1jvgMMeYQHOOJCAK1wYjVXXkyB9axxl4S" alt="Photo 3">
-                </div>
+                    <img 
+  class="responsive-img"src="https://lh3.googleusercontent.com/d/1jvgMMeYQHOOJCAK1wYjVXXkyB9axxl4S" alt="Photo 3">
             </div>
             
             <button onclick="hideWrongPasswordMessage()">Fine, I'll try again! 😅</button>
@@ -1975,11 +1978,13 @@
 
         <div id="content">
             <h1>CHÚC MỪNG SINH NHẬT THÙY YÊN!</h1>
-            <img src="https://lh3.googleusercontent.com/d/1dOnKDz1_cDF76o8fqxpdvks6j47Jp9dw" alt="Photo 3">
+            <img 
+  class="responsive-img"src="https://lh3.googleusercontent.com/d/1dOnKDz1_cDF76o8fqxpdvks6j47Jp9dw" alt="Photo 3">
             <h2>Gửi ngàn lời chúc đến cậu! Mở hộp quà để xem nha</h2>
             <div class="gallery">
                 <div class="media-item">
-    <img src="https://lh3.googleusercontent.com/d/1MoVN-XBidIqsI2AkHXhvq0tdt6SMrlOg" alt="Photo 1">
+    <img 
+  class="responsive-img"src="https://lh3.googleusercontent.com/d/1MoVN-XBidIqsI2AkHXhvq0tdt6SMrlOg" alt="Photo 1">
     <div class="media-caption" onclick="toggleCaption(this)">
         <div class="caption-title">💬 Điều đầu tiên là ...</div>
         <div class="caption-content">
@@ -1989,7 +1994,8 @@
 </div>
 
 <div class="media-item">
-    <img src="https://lh3.googleusercontent.com/d/1aJsAJYEJxEn81ivNwHg8BnR3PS5OsxHv" alt="Photo 2">
+    <img 
+  class="responsive-img"src="https://lh3.googleusercontent.com/d/1aJsAJYEJxEn81ivNwHg8BnR3PS5OsxHv" alt="Photo 2">
     <div class="media-caption" onclick="toggleCaption(this)">
         <div class="caption-title">💬 Điều thứ hai là ...</div>
         <div class="caption-content">
@@ -1999,7 +2005,8 @@
 </div>
 
 <div class="media-item">
-    <img src="https://lh3.googleusercontent.com/d/1bWTctI9aW3U5kDZASxK0hVMIb1flSPrN" alt="Photo 3">
+    <img 
+  class="responsive-img"src="https://lh3.googleusercontent.com/d/1bWTctI9aW3U5kDZASxK0hVMIb1flSPrN" alt="Photo 3">
     <div class="media-caption" onclick="toggleCaption(this)">
         <div class="caption-title">💬 Điều thứ ba là ...</div>
         <div class="caption-content">
@@ -2009,7 +2016,8 @@
 </div>
 
 <div class="media-item">
-    <img src="https://lh3.googleusercontent.com/d/1UaOk_JjugMLuGqSLQlmAHX1iDRg-A2wl" alt="Photo 4">
+    <img 
+  class="responsive-img"src="https://lh3.googleusercontent.com/d/1UaOk_JjugMLuGqSLQlmAHX1iDRg-A2wl" alt="Photo 4">
     <div class="media-caption" onclick="toggleCaption(this)">
         <div class="caption-title">💬 Điều thứ 4 là ...</div>
         <div class="caption-content">
@@ -2071,10 +2079,10 @@
     submitBtn.innerHTML = 'Checking...';
     submitBtn.disabled = true;
     // uncomamnd to get true
-    // passwordSection.style.display = 'none';
-    //         content.style.display = 'block';
-    //         document.getElementById('back-button').style.display = 'block';
-    //         createCelebration();
+    passwordSection.style.display = 'none';
+            content.style.display = 'block';
+            document.getElementById('back-button').style.display = 'block';
+            createCelebration();
 
     // sectin false
     // passwordSection.style.display = 'none';
