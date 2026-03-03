@@ -2087,6 +2087,7 @@
         });
 
         const data = await response.json();
+        console.log('Password check response:', data,data.success);
         if (data.success) {
             passwordSection.style.display = 'none';
             content.style.display = 'block';
