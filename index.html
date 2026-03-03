@@ -2087,7 +2087,6 @@
         });
 
         const data = await response.json();
-        data.success = false;
         if (data.success) {
             passwordSection.style.display = 'none';
             content.style.display = 'block';
