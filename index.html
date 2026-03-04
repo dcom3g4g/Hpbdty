@@ -2112,6 +2112,10 @@
             document.getElementById('back-button').style.display = 'block';
             createCelebration();
             document.getElementById('bg-music').play();
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
         } else {
             passwordSection.style.display = 'none';
             wrongPassword.style.display = 'block';
