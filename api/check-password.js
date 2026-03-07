@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   const { password } = req.body;
 console.log('Received password:', password); // Debugging log
 console.log('Received password:11', process.env.SITE_PASSWORD); // Debugging log
-  if (password === process.env.SITE_PASSWORD) {
+  if (password === process.env.SEVEN_PASSWORD) {
     return res.status(200).json({ success: true });
   } else {
     return res.status(401).json({ success: false });
